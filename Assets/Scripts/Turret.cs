@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private float _targetingRange;
+    [Header("Object References")]
     [SerializeField] private LayerMask _enemyMask;
     [SerializeField] private Transform _turretRotationPoint;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private Transform _firePoint;
+    
+    [Header("Attribute")]
+    [SerializeField] private float _targetingRange;
+    [SerializeField] private float _bulletPerSecond;
 
     private Transform _target;
+    private float _timeUntilFire;
     
     //TODO : They will convert to UniTask.
     private void Update()
@@ -25,6 +32,22 @@ public class Turret : MonoBehaviour
         {
             _target = null;
         }
+        else
+        {
+            _timeUntilFire += Time.deltaTime;
+            if (_timeUntilFire >= 1f / _bulletPerSecond)
+            {
+                Shoot();
+                _timeUntilFire = 0f;
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        GameObject bulletObj = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
+        Bullet bullet = bulletObj.GetComponent<Bullet>();
+        bullet.SetTarget(_target);
     }
 
     private void RotateTowardsTarget()

@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class EnemySpawner : MonoBehaviour
@@ -15,6 +16,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _enemyPerSecond = 0.2f;
     [SerializeField] private float _timeBetweenWaves = 0.5f;
     [SerializeField] private int _waveCount = 5;
+
+    public UnityAction OnEnemyDestroyed;
     
     [Inject]
     void Construct(IInstantiator instantiator)

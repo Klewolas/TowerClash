@@ -113,7 +113,39 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2130570895240963008}
+  - {fileID: 1750100355835310129}
   m_Father: {fileID: 2617705974915995713}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5187103779688087628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750100355835310129}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750100355835310129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187103779688087628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3751109671349339006}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6340344126250144805
@@ -232,7 +264,7 @@ Transform:
   - {fileID: 856971171583815180}
   - {fileID: 3751109671349339006}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5442002192937956166
 MonoBehaviour:
@@ -246,8 +278,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b4f215c59df5a40b05b94dd5c79eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetingRange: 1.5
   _enemyMask:
     serializedVersion: 2
     m_Bits: 64
   _turretRotationPoint: {fileID: 3751109671349339006}
+  _bulletPrefab: {fileID: 7621334875618984865, guid: 011c71739deb32f42bc6348ab491074e, type: 3}
+  _firePoint: {fileID: 1750100355835310129}
+  _targetingRange: 1.5
+  _bulletPerSecond: 5
