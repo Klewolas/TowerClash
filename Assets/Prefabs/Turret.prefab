@@ -246,4 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b4f215c59df5a40b05b94dd5c79eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetingRange: 2.5
+  _targetingRange: 1.5
+  _enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _turretRotationPoint: {fileID: 3751109671349339006}
