@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,41 +15,50 @@ public class Turret : MonoBehaviour
     [Header("Attribute")]
     [SerializeField] private float _targetingRange;
     [SerializeField] private float _bulletPerSecond;
+    [SerializeField] private int _turretBulletDamage;
 
     private Transform _target;
     private float _timeUntilFire;
-    
-    //TODO : They will convert to UniTask.
-    private void Update()
+
+    private void Start()
     {
-        if (_target == null)
-        {
-            FindTarget();
-            return;
-        }
+        FindTargetAndShooting();
+    }
 
-        RotateTowardsTarget();
+    private async void FindTargetAndShooting()
+    {
+        _target = await FindTarget();
 
-        if (!CheckTargetIsInRange())
+        StartShoot().Forget();
+    }
+
+    private async UniTaskVoid StartShoot()
+    {
+        _target.gameObject.TryGetComponent(out Health targetHealth);
+        while (_target != null)
         {
-            _target = null;
-        }
-        else
-        {
-            _timeUntilFire += Time.deltaTime;
-            if (_timeUntilFire >= 1f / _bulletPerSecond)
+            RotateTowardsTarget();
+
+            if (!CheckTargetIsInRange())
             {
-                Shoot();
-                _timeUntilFire = 0f;
+                _target = null;
+            }
+            else
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(1f / _bulletPerSecond));
+                if (targetHealth.CanShoot(_turretBulletDamage))
+                    Shoot();
             }
         }
+
+        FindTargetAndShooting();
     }
 
     private void Shoot()
     {
         GameObject bulletObj = Instantiate(_bulletPrefab, _firePoint.position, Quaternion.identity);
         Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.SetTarget(_target);
+        bullet.SetProperties(_target, _turretBulletDamage);
     }
 
     private void RotateTowardsTarget()
@@ -65,15 +76,23 @@ public class Turret : MonoBehaviour
         return Vector2.Distance(_target.position, transform.position) <= _targetingRange;
     }
 
-    private void FindTarget()
+    private async UniTask<Transform> FindTarget()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, _targetingRange, (Vector2)transform.position,
-            0f, _enemyMask);
-
-        if (hits.Length > 0)
+        Transform target = null;
+        while (target == null)
         {
-            _target = hits[0].transform;
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, _targetingRange, (Vector2)transform.position,
+                0f, _enemyMask);
+
+            if (hits.Length > 0)
+            {
+                target = hits[0].transform;
+            }
+
+            await UniTask.Delay(TimeSpan.FromMilliseconds(15));
         }
+
+        return target;
     }
 
     private void OnDrawGizmosSelected()

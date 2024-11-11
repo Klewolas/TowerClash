@@ -286,3 +286,4 @@ MonoBehaviour:
   _firePoint: {fileID: 1750100355835310129}
   _targetingRange: 1.5
   _bulletPerSecond: 5
+  _turretBulletDamage: 1

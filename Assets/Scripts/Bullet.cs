@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,18 +7,24 @@ public class Bullet : MonoBehaviour
 
     [Header("Attributes")] 
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _bulletDamage;
     
     private Transform _target;
+    private float _bulletDamage;
 
-    public void SetTarget(Transform target)
+    public void SetProperties(Transform target, int bulletDamage)
     {
         _target = target;
+        _bulletDamage = bulletDamage;
     }
     
     private void FixedUpdate()
     {
-        if (!_target) return;
+        if (!_target)
+        {
+            Debug.Log("Bullet : Target is null bullet destroy self.");
+            Destroy(gameObject);
+            return;
+        }
 
         RotateTowardsTarget();
         
@@ -41,6 +44,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (_target.gameObject.GetInstanceID() != other.gameObject.GetInstanceID()) return;
         other.gameObject.GetComponent<Health>().TakeDamage(_bulletDamage);
         Destroy(gameObject);
     }

@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         {
             int currentEnemyCount = 0;
 
-            while (currentEnemyCount <= _waveEnemyCount)
+            while (currentEnemyCount < _waveEnemyCount)
             {
                 _instantiator.InstantiatePrefab(_enemyPrefab);
                 
