@@ -10,15 +10,17 @@ public class Plot : MonoBehaviour
     [SerializeField] private Color _hoverColor;
 
     private BuildManager _buildManager;
+    private GameCurrencyManager _gameCurrencyManager;
     private IInstantiator _instantiator;
 
     private GameObject _placeableObject;
     private Color _startColor;
     
     [Inject]
-    void Construct(BuildManager buildManager, IInstantiator instantiator)
+    void Construct(BuildManager buildManager, GameCurrencyManager gameCurrencyManager, IInstantiator instantiator)
     {
         _buildManager = buildManager;
+        _gameCurrencyManager = gameCurrencyManager;
         _instantiator = instantiator;
 
         _startColor = _spriteRenderer.color;
@@ -38,7 +40,16 @@ public class Plot : MonoBehaviour
     {
         if (_placeableObject != null) return;
 
-        _placeableObject = _instantiator.InstantiatePrefab(_buildManager.GetSelectedTower(), transform.position,
+        var turret = _buildManager.GetSelectedTurret();
+
+        if (turret.Cost > _gameCurrencyManager.Currency)
+        {
+            Debug.Log("You can't afford this turret.");
+            return;
+        }
+
+        _gameCurrencyManager.SpendCurrency(turret.Cost);
+        _placeableObject = _instantiator.InstantiatePrefab(turret.TurretPrefab, transform.position,
             Quaternion.identity, transform);
     }
 }

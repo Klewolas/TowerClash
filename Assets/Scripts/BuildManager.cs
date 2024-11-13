@@ -1,14 +1,20 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BuildManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _towerPrefabs;
+    [SerializeField] private Turret[] _turrets;
 
-    private int _selectedTower = 0;
+    private int _selectedTurret = 0;
 
-    public GameObject GetSelectedTower()
+    public Turret GetSelectedTurret()
     {
-        return _towerPrefabs[_selectedTower];
+        return _turrets[_selectedTurret];
+    }
+
+    public void SetSelectedTurret(int selectedTurret)
+    {
+        _selectedTurret = selectedTurret;
     }
 }
