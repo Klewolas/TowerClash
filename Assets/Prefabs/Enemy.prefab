@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthPoint: 2
+  _currencyWorth: 50
 --- !u!58 &2634342652465561687
 CircleCollider2D:
   m_ObjectHideFlags: 0
