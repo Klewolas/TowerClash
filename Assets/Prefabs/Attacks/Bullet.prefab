@@ -163,4 +163,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 6560706629470751060}
   _bulletSpeed: 5
-  _bulletDamage: 1
