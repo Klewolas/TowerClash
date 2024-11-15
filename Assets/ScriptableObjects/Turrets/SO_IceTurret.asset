@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f89f1f6b795041a9a08bd5f902599c94, type: 3}
-  m_Name: SO_BasicTurret
+  m_Name: SO_IceTurret
   m_EditorClassIdentifier: 
-  Name: Basic Turret
-  Cost: 100
-  TurretPrefab: {fileID: 8079838847836626550, guid: 949d22ab58ed65d42ae77c03f610b40d, type: 3}
+  Name: Ice Turret
+  Cost: 150
+  TurretPrefab: {fileID: 8079838847836626550, guid: 9dccfdd295fb09b458e58b6e6d63faed, type: 3}

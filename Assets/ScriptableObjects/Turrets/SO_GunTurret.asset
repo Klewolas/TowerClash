@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89f1f6b795041a9a08bd5f902599c94, type: 3}
+  m_Name: SO_GunTurret
+  m_EditorClassIdentifier: 
+  Name: Gun Turret
+  Cost: 100
+  TurretPrefab: {fileID: 8079838847836626550, guid: 949d22ab58ed65d42ae77c03f610b40d, type: 3}
