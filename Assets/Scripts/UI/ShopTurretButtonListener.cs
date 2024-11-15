@@ -22,6 +22,6 @@ public class ShopTurretButtonListener : MonoBehaviour
     {
         _button = GetComponent<Button>();
         
-        _button.onClick.AddListener(() => _buildManager.SetSelectedTurret(0));
+        _button.onClick.AddListener(() => _buildManager.SetSelectedTurret(_turretIndex));
     }
 }
