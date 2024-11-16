@@ -42,6 +42,12 @@ public class Plot : MonoBehaviour
 
         var turret = _buildManager.GetSelectedTurret();
 
+        if (turret == null)
+        {
+            Debug.Log("You didn't pick a turret.");
+            return;
+        }
+
         if (turret.Cost > _gameCurrencyManager.Currency)
         {
             Debug.Log("You can't afford this turret.");

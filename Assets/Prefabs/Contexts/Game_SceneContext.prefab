@@ -185,7 +185,6 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 1131720469882147349}
   - {fileID: 6145619294231602989}
-  - {fileID: 0}
   - {fileID: 6455008453102393279}
   _installerPrefabs: []
   _autoRun: 1
