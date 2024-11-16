@@ -1,15 +1,15 @@
-﻿using System;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-[RequireComponent(typeof(Button))]
-public class ShopTurretButtonListener : MonoBehaviour
+public class ShopTurretButtonUI : MonoBehaviour
 {
-    [SerializeField] private int _turretIndex;
+    [SerializeField] private Turret _turret;
+    [SerializeField] private TMP_Text _turretNameText;
+    [SerializeField] private Button _button;
 
-    private Button _button;
-        
+    
     private BuildManager _buildManager;
     
     [Inject]
@@ -22,6 +22,6 @@ public class ShopTurretButtonListener : MonoBehaviour
     {
         _button = GetComponent<Button>();
         
-        _button.onClick.AddListener(() => _buildManager.SetSelectedTurret(_turretIndex));
+        _button.onClick.AddListener(() => _buildManager.SetSelectedTurret(_turret));
     }
 }

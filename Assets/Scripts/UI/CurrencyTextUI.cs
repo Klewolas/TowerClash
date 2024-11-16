@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MenuUI : MonoBehaviour
+public class CurrencyTextUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _currencyText;
     

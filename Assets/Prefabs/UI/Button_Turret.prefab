@@ -135,7 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35069eab4a3f47f6a7b7062595b11e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turretIndex: 0
+  _turret: {fileID: 0}
+  _turretNameText: {fileID: 6393215312228667098}
+  _button: {fileID: 9010767199685721558}
 --- !u!1 &6698703946685336502
 GameObject:
   m_ObjectHideFlags: 0

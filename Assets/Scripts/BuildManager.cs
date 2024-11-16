@@ -1,20 +1,14 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
-
-public class BuildManager : MonoBehaviour
+﻿public class BuildManager
 {
-    [SerializeField] private Turret[] _turrets;
-
-    private int _selectedTurret = 0;
-
+    private Turret _selectedTurret;
+    
     public Turret GetSelectedTurret()
     {
-        return _turrets[_selectedTurret];
+        return _selectedTurret;
     }
-
-    public void SetSelectedTurret(int selectedTurret)
+    
+    public void SetSelectedTurret(Turret turret)
     {
-        _selectedTurret = selectedTurret;
+        _selectedTurret = turret;
     }
 }

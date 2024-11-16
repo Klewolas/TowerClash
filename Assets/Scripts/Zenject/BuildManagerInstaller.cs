@@ -1,11 +1,10 @@
 using UnityEngine;
 using Zenject;
 
-public class BuildManagerInstaller : MonoInstaller
+public class BuildManagerInstaller : Installer<BuildManagerInstaller>
 {
-    [SerializeField] private BuildManager _buildManager;
     public override void InstallBindings()
     {
-        Container.BindInstance(_buildManager).AsSingle().NonLazy();
+        Container.Bind<BuildManager>().AsSingle().NonLazy();
     }
 }
